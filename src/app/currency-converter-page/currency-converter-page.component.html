@@ -30,6 +30,7 @@
     </div>
     <div *ngIf="histories" class="row history-list">
         <li *ngFor="let history of histories">
+            <!--You can use it to not show the Rate value-->
             <!-- <ng-container *ngFor="let obj of history | keyvalue; let index = index">
               <ng-container *ngIf="0 === index">
                 {{ obj.key }}: {{ obj.value }}
