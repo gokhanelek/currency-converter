@@ -1,0 +1,43 @@
+<div class="currency-converter-container">
+    <div class="row center">
+        <div class="col-12">
+            <div class="mb-3">
+                <span>Amount</span>
+                <input type="text" class="form-control" [(ngModel)]="amount" (keydown.enter)="enterAmount()"
+                    placeholder="Amount" aria-label="amount">
+            </div>
+        </div>
+    </div>
+    <div class="row currency-group">
+        <div *ngIf="symbols$ |async" class="col-lg-4 col-sm-12">
+            <span>From Currency</span>
+            <select class="form-select" [(ngModel)]="fromCurrency" (change)="changeCurrency()"
+                aria-label="From Currency">
+                <option *ngFor="let currency of currencies">{{currency}}</option>
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <button type="button" class="btn btn-primary" (click)="changeCurrencies()">Change<img
+                    src="./assets/images/compare.svg" alt="" srcset="">
+            </button>
+        </div>
+        <div *ngIf="isStatusSymbol" class="col-lg-4 col-sm-12">
+            <span>To Currency</span>
+            <select class="form-select" [(ngModel)]="toCurrency" (change)="changeCurrency()" aria-label="To Currency">
+                <option *ngFor="let currency of currencies">{{currency}}</option>
+            </select>
+        </div>
+    </div>
+    <div *ngIf="histories" class="row history-list">
+        <li *ngFor="let history of histories">
+            <!-- <ng-container *ngFor="let obj of history | keyvalue; let index = index">
+              <ng-container *ngIf="0 === index">
+                {{ obj.key }}: {{ obj.value }}
+              </ng-container>
+            </ng-container> -->
+            <ng-container *ngFor="let obj of history | keyvalue">
+                {{ obj.key }}: {{ obj.value }}
+              </ng-container>
+          </li>
+    </div>
+</div>
